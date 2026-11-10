@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Design tokens from the Figma "New Neutral" palette */
+@theme {
+  --color-n-25: #fafafa;
+  --color-n-50: #f3f3f3;
+  --color-n-100: #dbdbdb;
+  --color-n-300: #aaaaaa;
+  --color-n-400: #929292;
+  --color-n-500: #7a7a7a;
+  --color-n-600: #626262;
+  --color-n-700: #4a4a4a;
+  --color-n-800: #313131;
+  --color-n-900: #191919;
+  --color-line: #ebebeb;
+  --color-line-soft: #efefef;
+  --color-brand: #317cff;
+  --color-brand-deep: #215dc6;
+  --color-chart: #2563eb;
+  --color-success: #35c850;
+  --color-warning: #fc712c;
+
+  --shadow-card: 0 1px 2px 0 rgb(40 40 40 / 0.08), 0 0 0 1px #ebebeb;
+  --shadow-control: 0 1px 2px 0 rgb(40 40 40 / 0.08), 0 0 0 1px #efefef;
+  --shadow-panel: 0 1px 1px 0 rgb(40 40 40 / 0.08), 0 0 0 1px #ebebeb;
+  --shadow-tile: 0 1px 2px 0 rgb(40 40 40 / 0.12), 0 0 0 1px #ebebeb;
+}
+
+/* Keeps scrolling but hides the scrollbar track */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-n-25);
+  color: var(--color-n-900);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Small glossy color square used in KPI labels and the chart tooltip */
+.swatch {
+  border: 0.5px solid #fff;
+  background-image:
+    linear-gradient(142deg, rgb(255 255 255 / 0) 15.6%, rgb(255 255 255 / 0.24) 50.7%, rgb(255 255 255 / 0) 83.3%),
+    linear-gradient(var(--swatch), var(--swatch));
+  box-shadow: 0 1px 2px 0 color-mix(in srgb, var(--swatch) 20%, transparent);
+}
+
+/* Colored icon tile on automation cards */
+.icon-tile {
+  background-image:
+    linear-gradient(138deg, rgb(255 255 255 / 0) 4.3%, rgb(255 255 255 / 0.2) 51.5%, rgb(255 255 255 / 0) 95.7%),
+    linear-gradient(var(--tile), var(--tile));
+  box-shadow:
+    0 1px 2px 0 color-mix(in srgb, var(--tile) 80%, transparent),
+    0 0 0 1px var(--tile-ring);
+}
+
+.text-gradient-ai {
+  background-image: linear-gradient(90deg, #317cff 10.8%, #feb172 119%);
+  background-clip: text;
+  color: transparent;
+}
+
+.text-shimmer-ai {
+  background-image: linear-gradient(90deg, #317cff 0%, #feb172 50%, #317cff 100%);
+  background-size: 200% 100%;
+  background-clip: text;
+  color: transparent;
 }
